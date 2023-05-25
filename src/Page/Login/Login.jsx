@@ -1,12 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
-import { loadCaptchaEnginge, LoadCanvasTemplate,  validateCaptcha } from 'react-simple-captcha';
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { AuthContext } from '../../provider/AuthProvider';
+import { Link } from 'react-router-dom';
 
 
 const Login = () => {
 
     const captchaRef = useRef(null)
-const [disabled,setDisabled]=useState(true)
+    const [disabled, setDisabled] = useState(true)
+
+    const { singIn } = useContext(AuthContext)
+
+
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, [])
@@ -17,21 +23,34 @@ const [disabled,setDisabled]=useState(true)
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password)
+
+        // singIn(email, password)
+        //     .then(result => {
+        //         const loggedUser = result.user
+        //         console.log(loggedUser);
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+
+        //     })
+
+
+
     }
 
     const handleValidateCaptcha = () => {
         const user_captcha_value = captchaRef.current.value
         // console.log(user_captcha_value)
-        
-     if (validateCaptcha(user_captcha_value)==true) {
-        alert('Captcha Matched');
-        setDisabled(false)
-    }
 
-    else {
-        alert('Captcha Does Not Match');
-        setDisabled(true)
-    }
+        if (validateCaptcha(user_captcha_value) == true) {
+            alert('Captcha Matched');
+            setDisabled(false)
+        }
+
+        else {
+            alert('Captcha Does Not Match');
+            setDisabled(true)
+        }
     }
 
     return (
@@ -80,13 +99,14 @@ const [disabled,setDisabled]=useState(true)
 
 
                                 <div className="form-control mt-6">
-                                   
+
                                     <input disabled={disabled} className="btn btn-primary" type="submit" value="Login" />
                                 </div>
                             </div>
 
 
                         </form>
+<p className='text-center mb-6'>New Here? <Link to='/register'><span className='text-green-500'>Create an account</span></Link></p>
                     </div>
                 </div>
             </div>
