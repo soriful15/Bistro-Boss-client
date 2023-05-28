@@ -1,7 +1,7 @@
 import React from 'react';
 import FoodCard from '../../../Components/FoodCard/FoodCard';
 
-
+// Todo: implement pagination here on this page
 const OrderTab = ({ items }) => {
     return (
         <>

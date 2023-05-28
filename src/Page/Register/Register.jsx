@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../Provider/AuthProvider';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import Swal from 'sweetalert2';
 const Register = () => {
     const { createUser, updateUserProfile } = useContext(AuthContext)

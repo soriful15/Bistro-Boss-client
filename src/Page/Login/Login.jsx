@@ -1,4 +1,4 @@
-import React, { useContext, useEffect,  useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 
@@ -8,13 +8,13 @@ import Swal from 'sweetalert2'
 
 const Login = () => {
 
- 
+
     const [disabled, setDisabled] = useState(true)
 
     const { singIn } = useContext(AuthContext)
-const navigate=useNavigate()
-const location=useLocation()
-let from = location.state?.from?.pathname || '/';
+    const navigate = useNavigate()
+    const location = useLocation()
+    let from = location.state?.from?.pathname || '/';
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -31,17 +31,17 @@ let from = location.state?.from?.pathname || '/';
             .then(result => {
                 const loggedUser = result.user
                 console.log(loggedUser);
-              
+
                 Swal.fire({
                     title: 'Login Successfully',
                     showClass: {
-                      popup: 'animate__animated animate__fadeInDown'
+                        popup: 'animate__animated animate__fadeInDown'
                     },
                     hideClass: {
-                      popup: 'animate__animated animate__fadeOutUp'
+                        popup: 'animate__animated animate__fadeOutUp'
                     }
-                  })
-                  navigate(from,{replace:true})
+                })
+                navigate(from, { replace: true })
             })
             .catch(error => {
                 console.log(error);
@@ -107,21 +107,22 @@ let from = location.state?.from?.pathname || '/';
                                     <label className="label">
                                         <LoadCanvasTemplate />
                                     </label>
-                                    <input onBlur={handleValidateCaptcha} type="text" name="captcha" placeholder="Type the text above" className="input input-bordered" required />
-                             
+                                    {/* <input onBlur={handleValidateCaptcha} type="text" name="captcha" placeholder="Type the text above" className="input input-bordered" required /> */}
+
                                 </div>
 
 
 
                                 <div className="form-control mt-6">
-
-                                    <input disabled={disabled} className="btn btn-primary" type="submit" value="Login" />
+                                   {/* TODO: make button disabled for captcha */}
+                                    {/* <input disabled={disabled} className="btn btn-primary" type="submit" value="Login" /> */}
+                                    <input disabled={false} className="btn btn-primary" type="submit" value="Login" />
                                 </div>
                             </div>
 
 
                         </form>
-<p className='text-center mb-6'>New Here? <Link to='/register'><span className='text-green-500'>Create an account</span></Link></p>
+                        <p className='text-center mb-6'>New Here? <Link to='/register'><span className='text-green-500'>Create an account</span></Link></p>
                     </div>
                 </div>
             </div>
