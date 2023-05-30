@@ -62,9 +62,6 @@ const AuthProvider = ({ children }) => {
             localStorage.removeItem('JwtTokenSecret');
             }
 
-
-
-
             setLoading(false)
         })
         return () => {

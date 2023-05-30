@@ -25,7 +25,7 @@ const [cart]=useCart()
         <li><Link to='/order/salad'>Order shop</Link></li>
         <li><Link to='/private'>private</Link></li>
         {/* <li><Link to='/dashboard/myCart'><button className="btn gap-2"> */}
-        <li><Link to='/dashboard'><button className="btn gap-2">
+        <li><Link to='/dashboard/myCart'><button className="btn gap-2">
         <FaShoppingCart></FaShoppingCart>
             <div className="badge badge-secondary">{cart?.length || 0}</div>
         </button></Link></li>
