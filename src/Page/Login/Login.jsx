@@ -3,8 +3,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../Provider/AuthProvider';
+
 import Swal from 'sweetalert2'
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
+import { AuthContext } from '../../provider/AuthProvider';
 
 const Login = () => {
 
@@ -123,6 +125,7 @@ const Login = () => {
 
                         </form>
                         <p className='text-center mb-6'>New Here? <Link to='/register'><span className='text-green-500'>Create an account</span></Link></p>
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>

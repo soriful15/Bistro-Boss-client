@@ -1,33 +1,59 @@
 import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from "react-hook-form";
-import { AuthContext } from '../../Provider/AuthProvider';
-import { Link, useNavigate} from 'react-router-dom';
+
+import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
+import { AuthContext } from '../../provider/AuthProvider';
 const Register = () => {
     const { createUser, updateUserProfile } = useContext(AuthContext)
     const navigate = useNavigate()
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data)
+        // console.log(data)
         createUser(data.email, data.password)
             .then(result => {
                 const createdUser = result.user
                 console.log(createdUser)
-                navigate('/')
 
-                updateUserProfile(data.name, data.photoURL, data.email)
+
+                // updateUserProfile(data.name, data.photoURL, data.email)
+                updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        console.log('update Profile')
-                        reset()
+                        // console.log('update Profile')
+                        const saveUser = { name: data.name, email:data.email }
+                        fetch('http://localhost:5000/users', {
+                            method: 'POST',
+                            headers: { 'content-type': 'application/json' },
+                            body: JSON.stringify(saveUser)
 
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'User Successfully',
-                            showConfirmButton: false,
-                            timer: 1500
                         })
+
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    reset()
+
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'User Successfully',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                    navigate('/')
+                                }
+                            })
+                        /*   reset()
+                          Swal.fire({
+                              position: 'top-end',
+                              icon: 'success',
+                              title: 'User Successfully',
+                              showConfirmButton: false,
+                              timer: 1500
+                          })
+                          navigate('/') */
                     })
                     .catch((error) => {
                         console.log(error.message)
@@ -101,6 +127,7 @@ const Register = () => {
                             </div>
                         </form>
                         <p className='text-center mb-6'>AlReady have an Account? <Link to='/login'><span className='text-green-500'>login</span></Link></p>
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>
