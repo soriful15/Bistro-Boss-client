@@ -13,7 +13,7 @@ const useCart = () => {
 
     const { refetch, data: cart = [] } = useQuery({
         queryKey: ['carts', user?.email],
-        enabled: loading,
+        enabled: !loading,
         // queryFn: async () => {
         //     const response = await fetch(`http://localhost:5000/carts?email=${user?.email}`, {
         //         headers: { authorization: `bearer ${token}` }
@@ -25,7 +25,7 @@ const useCart = () => {
         // },
         queryFn: async () => {
             const response = await axiosSecure(`/carts?email=${user?.email}`)
-            console.log('res from axios', response)
+            console.log('res from axios', response.data)
             return response.data;
         },
     })

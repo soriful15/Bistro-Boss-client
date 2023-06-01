@@ -3,14 +3,15 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { FaShoppingCart, FaWallet, FaHome, FaCalendarAlt, FaBars, FaShoppingBag,FaUtensils, FaBook, FaUser } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
 import useCart from '../hooks/useCart';
-import admin from '../hooks/admin';
+import adminUsers from '../hooks/adminUsers';
+
 
 const DashBoard = () => {
     const [cart] = useCart()
 
     // TODO: load data from the server to have dynamic based on data
     // const isAdmin = true;
-    const [isAdmin]=admin()
+    const [isAdmin]=adminUsers()
 
     return (
         <>

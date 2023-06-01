@@ -56,13 +56,14 @@ const AuthProvider = ({ children }) => {
                     .then(data => {
                         // console.log(data.data.token)
                         localStorage.setItem('JwtTokenSecret', data.data.token)
+                        setLoading(false)
                     })
             }
             else {
             localStorage.removeItem('JwtTokenSecret');
             }
 
-            setLoading(false)
+            // setLoading(false)
         })
         return () => {
             unsubscribe()
