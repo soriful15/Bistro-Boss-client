@@ -10,8 +10,11 @@ import Register from "../Page/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import Private from "../Page/Private";
 import DashBoard from "../LayOut/DashBoard";
-import Cart from "../Page/DashBoard/cart";
 import Allusers from "../Page/DashBoard/AllUsers/Allusers";
+import AddItem from "../Page/DashBoard/AddItem/AddItem";
+import AdminRoutes from "../Routes/AdminRoutes";
+import MangeItem from "../LayOut/MangeItem";
+import Cart from "../Page/DashBoard/Cart";
 
 
 const router = createBrowserRouter([
@@ -59,6 +62,14 @@ const router = createBrowserRouter([
       {
         path:'allUsers',
         element:<Allusers></Allusers>
+      },
+      {
+        path:'addItem',
+        element:<AdminRoutes><AddItem></AddItem></AdminRoutes>
+      },
+      {
+        path:'manageItems',
+        element:<AdminRoutes><MangeItem></MangeItem></AdminRoutes>
       },
     ]
   }

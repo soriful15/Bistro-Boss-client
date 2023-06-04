@@ -7,7 +7,7 @@ import useAxiosSecure from '../../../hooks/useAxioSecure';
 
 const Allusers = () => {
 
-    const [axiosSecure]=useAxiosSecure();
+    const [axiosSecure] = useAxiosSecure();
 
     const { data: users = [], refetch } = useQuery(['users'], async () => {
         // const res = await fetch(`http://localhost:5000/users`)
@@ -33,7 +33,7 @@ const Allusers = () => {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title:` ${user.name} add admin`,
+                        title: ` ${user.name} add admin`,
                         showConfirmButton: false,
                         timer: 1500
                     })
