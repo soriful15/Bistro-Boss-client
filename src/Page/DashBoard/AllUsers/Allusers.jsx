@@ -10,7 +10,7 @@ const Allusers = () => {
     const [axiosSecure] = useAxiosSecure();
 
     const { data: users = [], refetch } = useQuery(['users'], async () => {
-        // const res = await fetch(`http://localhost:5000/users`)
+        // const res = await fetch(`https://bistro-boss-server-tan.vercel.app /users`)
         const res = await axiosSecure.get(`/users`)
         // return res.json()
         return res.data
@@ -23,7 +23,7 @@ const Allusers = () => {
 
     const handleAdminBtn = (user) => {
         console.log(user)
-        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+        fetch(`https://bistro-boss-server-tan.vercel.app /users/admin/${user._id}`, {
             method: 'PATCH',
         })
             .then(res => res.json())
