@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import useCart from '../../../hooks/useCart';
 import { AuthContext } from '../../../provider/AuthProvider';
+import adminUsers from '../../../hooks/adminUsers';
 const NavBar = () => {
     const { logOut, user } = useContext(AuthContext)
 const [cart]=useCart()
-
+const [isAdmin]=adminUsers()
 
     const handleLogOut = () => {
         logOut()
@@ -24,7 +25,9 @@ const [cart]=useCart()
         <li><Link to='/menu'>Our Menu</Link></li>
         <li><Link to='/order/salad'>Order shop</Link></li>
         <li><Link to='/private'>private</Link></li>
-        {/* <li><Link to='/dashboard/myCart'><button className="btn gap-2"> */}
+    {
+        isAdmin ?  <li><Link to="/dashboard/userAdmin">DashBoard</Link></li> :  <li><Link to="/dashboard/userHome">DashBoard</Link></li>
+    }
         <li><Link to='/dashboard/myCart'><button className="btn gap-2">
         <FaShoppingCart></FaShoppingCart>
             <div className="badge badge-secondary">{cart?.length || 0}</div>
