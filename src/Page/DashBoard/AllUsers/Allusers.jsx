@@ -23,7 +23,7 @@ const Allusers = () => {
 
     const handleAdminBtn = (user) => {
         console.log(user)
-        fetch(`https://bistro-boss-server-tan.vercel.app /users/admin/${user._id}`, {
+        fetch(`https://bistro-boss-server-tan.vercel.app/users/admin/${user._id}`, {
             method: 'PATCH',
         })
             .then(res => res.json())
