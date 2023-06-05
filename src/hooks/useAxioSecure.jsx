@@ -6,6 +6,9 @@ import useAuth from './useAuth';
 // import { AuthContext } from '../provider/AuthProvider';
 // import useAuth from './useAuth';
 
+const axiosSecure = axios.create({
+  baseURL: 'http://localhost:5000',
+});
 
 const useAxiosSecure = () => {
   //   const { logOut } = useAuth(); 
@@ -13,9 +16,9 @@ const useAxiosSecure = () => {
   const { logOut } = useAuth();
   const navigate = useNavigate();
 
-  const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000',
-  });
+  // const axiosSecure = axios.create({
+  //   baseURL: 'http://localhost:5000',
+  // });
 
   useEffect(() => {
     axiosSecure.interceptors.request.use((config) => {
@@ -36,7 +39,7 @@ const useAxiosSecure = () => {
         return Promise.reject(error);
       }
     );
-  }, [logOut, navigate, axiosSecure]);
+  }, [logOut, navigate]);
 
   return [axiosSecure];
 };
