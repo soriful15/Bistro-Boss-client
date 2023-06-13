@@ -19,7 +19,7 @@ const FoodCard = ({item}) => {
         console.log(item)
         if(user && user.email){
             const cartItem={menuItemId:_id,name,image,price,email:user.email}
-           fetch(`https://bistro-boss-server-tan.vercel.app/carts`,{
+           fetch(`http://localhost:5000/carts`,{
             method:'POST',
             headers:{
                 'content-type': 'application/json'
@@ -67,7 +67,7 @@ const FoodCard = ({item}) => {
                     <h2 className="card-title">{name}</h2>
                     <p>{recipe}</p>
                     <div className="card-actions flex items-center justify-center">
-                        <button onClick={()=>handleAddCart(item)} className="btn btn-outline bg-slate-200 border-orange-400 border-0 border-b-4">Add to Card</button>
+         <button onClick={()=>handleAddCart(item)} className="btn btn-outline bg-slate-200 border-orange-400 border-0 border-b-4">Add to Card</button>
                     </div>
                 </div>
             </div>

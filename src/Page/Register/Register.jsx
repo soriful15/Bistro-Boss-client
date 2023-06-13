@@ -22,8 +22,8 @@ const Register = () => {
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
                         // console.log('update Profile')
-                        const saveUser = { name: data.name, email:data.email }
-                        fetch('https://bistro-boss-server-tan.vercel.app/users', {
+                        const saveUser = { name: data.name, email: data.email }
+                        fetch('http://localhost:5000/users', {
                             method: 'POST',
                             headers: { 'content-type': 'application/json' },
                             body: JSON.stringify(saveUser)
